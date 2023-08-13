@@ -68,3 +68,18 @@ class PatientManager:
         print("ID   Name                   Disease         Gender          Age\n")
         for patient in self.patients:
             print(patient)
+
+    def search_patient_by_id(self, id):
+        for patient in self.patients:
+            if patient.id == id:
+                return patient
+        return None
+
+    def edit_patient_info(self, id, new_name, new_disease, new_gender, new_age):
+        patient = self.search_patient_by_id(id)
+        if patient:
+            patient.name = new_name
+            patient.disease = new_disease
+            patient.gender = new_gender
+            patient.age = new_age
+
