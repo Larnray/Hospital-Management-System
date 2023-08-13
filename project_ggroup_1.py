@@ -1,7 +1,6 @@
 # Authors: Olanrewaju Boyede, Chibueze Mgbemere, Adnan Khan
 # Date: 11-Aug-2023
 
-
 class Doctor:
     def __init__(self, id, name, speciality, timing, qualification, room_number):
         self.id = id
@@ -70,6 +69,20 @@ class PatientManager:
         for patient in self.patients:
             print(patient)
 
+    def search_patient_by_id(self, id):
+        for patient in self.patients:
+            if patient.id == id:
+                return patient
+        return None
+
+    def edit_patient_info(self, id, new_name, new_disease, new_gender, new_age):
+        patient = self.search_patient_by_id(id)
+        if patient:
+            patient.name = new_name
+            patient.disease = new_disease
+            patient.gender = new_gender
+            patient.age = new_age
+
 class Management:
     def __init__(self):
         self.doctor_manager = DoctorManager()
@@ -88,8 +101,9 @@ class Management:
             elif choice == "2":
                 self.patients_menu()
             elif choice == "3":
+                print("Thanks for using the program. Bye!")
                 break
-
+                    
     def doctors_menu(self):
         while True:
             print("\nDoctors Menu:")
